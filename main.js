@@ -66,4 +66,52 @@
       </div>
     </article>`;
   }).join("");
+
+  // Structured data (schema.org MusicEvent) so search engines can surface
+  // the shows in event listings and rich results.
+  const SITE = "https://strangerattractionspresents.com";
+  const ld = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": SITE + "/#org",
+        "name": "Stranger Attractions Presents",
+        "url": SITE + "/",
+        "logo": SITE + "/assets/logo.jpg",
+        "email": "dustinboltjes@gmail.com",
+        "sameAs": [
+          "https://www.facebook.com/StrangerAttractions/",
+          "https://www.instagram.com/strangerattractionsindy"
+        ]
+      },
+      ...upcoming.map(e => ({
+        "@type": "MusicEvent",
+        "name": e.headliner + (e.support && e.support.length ? " w/ " + e.support.join(", ") : ""),
+        "startDate": e.date,
+        "url": e.facebook,
+        "image": SITE + "/" + e.poster,
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+          "@type": "MusicVenue",
+          "name": e.venue,
+          "address": e.address
+        },
+        "performer": [e.headliner].concat(e.support || []).map(n => ({ "@type": "MusicGroup", "name": n })),
+        "organizer": { "@id": SITE + "/#org" },
+        "offers": {
+          "@type": "Offer",
+          "url": e.tickets,
+          "price": (e.price || "").replace("$", ""),
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      }))
+    ]
+  };
+  const s = document.createElement("script");
+  s.type = "application/ld+json";
+  s.textContent = JSON.stringify(ld);
+  document.head.appendChild(s);
 })();
