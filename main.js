@@ -61,7 +61,7 @@
         </div>
         <div class="card-actions">
           <a class="btn-tickets" href="${esc(e.tickets)}" target="_blank" rel="noopener">Get Tickets</a>
-          <a class="btn-fb" href="${esc(e.facebook)}" target="_blank" rel="noopener">FB Event</a>
+          ${e.facebook ? `<a class="btn-fb" href="${esc(e.facebook)}" target="_blank" rel="noopener">FB Event</a>` : ""}
         </div>
       </div>
     </article>`;
@@ -89,7 +89,7 @@
         "@type": "MusicEvent",
         "name": e.headliner + (e.support && e.support.length ? " w/ " + e.support.join(", ") : ""),
         "startDate": e.date,
-        "url": e.facebook,
+        "url": e.facebook || e.tickets,
         "image": SITE + "/" + e.poster,
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",

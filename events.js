@@ -112,6 +112,21 @@ const EVENTS = [
     tag: "Heavy Metal (Canada)"
   },
   {
+    headliner: "FIRES IN THE DISTANCE",
+    support: ["Hinayana"],
+    date: "2026-09-06",
+    venue: "State Street Pub",
+    address: "243 N State Ave, Indianapolis, IN 46201",
+    doors: "7:00 PM",
+    show: "7:30 PM",
+    price: "$15",
+    age: "All Ages",
+    tickets: "https://skeletix.com/4678-stranger-attractions-presents-fires-in-the/",
+    facebook: "",
+    poster: "assets/posters/fires-in-the-distance.jpg",
+    tag: "Melodic Death Doom (CT)"
+  },
+  {
     headliner: "VOID",
     support: ["Phantom", "Sacred Leather"],
     date: "2026-09-16",
