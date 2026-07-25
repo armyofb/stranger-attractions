@@ -37,6 +37,21 @@ const EVENTS = [
     tag: "Disgorge US live show"
   },
   {
+    headliner: "CYBER CRISIS",
+    support: ["Dildox", "Healng", "Absolute Form", "Atropa Doll"],
+    date: "2026-07-26",
+    venue: "State Street Pub",
+    address: "243 N State Ave, Indianapolis, IN 46201",
+    doors: "7:00 PM",
+    show: "8:00 PM",
+    price: "$12",
+    age: "21 & Over",
+    tickets: "https://skeletix.com/4637-stranger-attractions-presents-cyber-crisis/",
+    facebook: "",
+    poster: "assets/posters/cyber-crisis.jpg",
+    tag: ""
+  },
+  {
     headliner: "SIX FEET UNDER",
     support: ["Fuming Mouth", "Flesher", "1 Body 6 Graves"],
     date: "2026-08-14",
@@ -65,6 +80,36 @@ const EVENTS = [
     facebook: "https://www.facebook.com/events/1459975292045744/",
     poster: "assets/posters/rezn.jpg",
     tag: "Doom (Chicago, IL)"
+  },
+  {
+    headliner: "HELL IS REAL FEST",
+    support: ["Profanatica", "Morbosidad", "Black Altar", "Cloak", "Valdrin", "Poltergeist", "Angel Massacre", "Arsine Ingest"],
+    date: "2026-08-22",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "4:00 PM",
+    show: "5:00 PM",
+    price: "$30",
+    age: "All Ages",
+    tickets: "https://skeletix.com/4564-stranger-attractions-presents-hell-is-real/",
+    facebook: "",
+    poster: "assets/posters/hell-is-real-fest.jpg",
+    tag: "Black & Death Metal Fest"
+  },
+  {
+    headliner: "HIPPIE DEATH CULT",
+    support: ["The Well", "Moon Destroys", "Ancient Days"],
+    date: "2026-09-03",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "7:00 PM",
+    show: "7:30 PM",
+    price: "$18",
+    age: "All Ages",
+    tickets: "https://skeletix.com/4635-stranger-attractions-presents-hippie-death/",
+    facebook: "",
+    poster: "assets/posters/hippie-death-cult.jpg",
+    tag: "Heavy Psych Doom (Portland)"
   },
   {
     headliner: "VEILCASTE",
@@ -140,6 +185,36 @@ const EVENTS = [
     facebook: "https://www.facebook.com/events/829817206735106/",
     poster: "assets/posters/void.jpg",
     tag: "Thrash (Louisiana)"
+  },
+  {
+    headliner: "SADNESS",
+    support: ["Barbelith", "Monterey"],
+    date: "2026-10-07",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "7:00 PM",
+    show: "7:30 PM",
+    price: "$16",
+    age: "All Ages",
+    tickets: "https://skeletix.com/4697-stranger-attractions-presents-black-circl/",
+    facebook: "",
+    poster: "assets/posters/sadness.jpg",
+    tag: "Atmospheric Black Metal"
+  },
+  {
+    headliner: "FRIZZI 2 FULCI",
+    support: ["Ethan McCarthy"],
+    date: "2026-10-07",
+    venue: "Holy Ground Studio",
+    address: "3317 E 10th St, Indianapolis, IN 46201",
+    doors: "7:00 PM",
+    show: "8:00 PM",
+    price: "$30",
+    age: "All Ages",
+    tickets: "https://skeletix.com/4670-stranger-attractions-presents-frizzi-2-fulc/",
+    facebook: "",
+    poster: "assets/posters/frizzi-2-fulci.jpg",
+    tag: "Fabio Frizzi Performs Fulci Scores"
   },
   {
     headliner: "PSYCROPTIC",
