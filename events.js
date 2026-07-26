@@ -1,5 +1,12 @@
 // ============================================================
 // STRANGER ATTRACTIONS — EVENT DATA
+// LAST_UPDATED is shown in the site footer — bump it whenever
+// the event data changes (ISO 8601 with timezone offset).
+// ============================================================
+
+const LAST_UPDATED = "2026-07-26T11:18:00-04:00";
+
+// ============================================================
 // To add a show: copy a block below, update the fields, and
 // drop the poster image into assets/posters/.
 // Past shows are hidden automatically based on the date.

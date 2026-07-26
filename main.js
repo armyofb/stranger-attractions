@@ -114,4 +114,14 @@
   s.type = "application/ld+json";
   s.textContent = JSON.stringify(ld);
   document.head.appendChild(s);
+
+  // Footer "shows last updated" stamp, always displayed in Indy time.
+  const luEl = document.getElementById("last-updated");
+  if (luEl && typeof LAST_UPDATED !== "undefined") {
+    const lu = new Date(LAST_UPDATED);
+    if (!isNaN(lu)) {
+      const opts = { timeZone: "America/Indiana/Indianapolis", month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" };
+      luEl.textContent = "Shows last updated " + new Intl.DateTimeFormat("en-US", opts).format(lu) + " ET";
+    }
+  }
 })();
