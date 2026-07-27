@@ -4,7 +4,7 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-07-26T11:18:00-04:00";
+const LAST_UPDATED = "2026-07-27T10:15:00-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -37,7 +37,7 @@ const EVENTS = [
     doors: "7:00 PM",
     show: "8:00 PM",
     price: "$16",
-    age: "All Ages",
+    age: "21 & Over",
     tickets: "https://www.skeletix.com/4653-stranger-attractions-presents-to-violently/",
     facebook: "https://www.facebook.com/events/2286035835263934/",
     poster: "assets/posters/to-violently-vomit.jpg",
@@ -172,7 +172,7 @@ const EVENTS = [
     doors: "7:00 PM",
     show: "7:30 PM",
     price: "$15",
-    age: "All Ages",
+    age: "21 & Over",
     tickets: "https://skeletix.com/4678-stranger-attractions-presents-fires-in-the/",
     facebook: "",
     poster: "assets/posters/fires-in-the-distance.jpg",
