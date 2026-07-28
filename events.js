@@ -4,7 +4,7 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-07-27T10:15:00-04:00";
+const LAST_UPDATED = "2026-07-28T11:16:00-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -13,7 +13,7 @@ const LAST_UPDATED = "2026-07-27T10:15:00-04:00";
 // ============================================================
 
 const EVENTS = [
-  {
+{
     headliner: "PARALYSIS",
     support: ["Chemical Dependency", "Graveripper", "Idol Throne"],
     date: "2026-07-24",
@@ -28,22 +28,7 @@ const EVENTS = [
     poster: "assets/posters/paralysis.jpg",
     tag: "Thrash (NJ)"
   },
-  {
-    headliner: "TO VIOLENTLY VOMIT",
-    support: ["Protrusion", "Scrotal Erosion", "Charybdis"],
-    date: "2026-07-30",
-    venue: "State Street Pub",
-    address: "243 N State Ave, Indianapolis, IN 46201",
-    doors: "7:00 PM",
-    show: "8:00 PM",
-    price: "$16",
-    age: "21 & Over",
-    tickets: "https://www.skeletix.com/4653-stranger-attractions-presents-to-violently/",
-    facebook: "https://www.facebook.com/events/2286035835263934/",
-    poster: "assets/posters/to-violently-vomit.jpg",
-    tag: "Disgorge US live show"
-  },
-  {
+{
     headliner: "CYBER CRISIS",
     support: ["Dildox", "Healng", "Absolute Form", "Atropa Doll"],
     date: "2026-07-26",
@@ -58,7 +43,22 @@ const EVENTS = [
     poster: "assets/posters/cyber-crisis.jpg",
     tag: ""
   },
-  {
+{
+    headliner: "TO VIOLENTLY VOMIT",
+    support: ["Protrusion", "Scrotal Erosion", "Charybdis"],
+    date: "2026-07-30",
+    venue: "State Street Pub",
+    address: "243 N State Ave, Indianapolis, IN 46201",
+    doors: "7:00 PM",
+    show: "8:00 PM",
+    price: "$16",
+    age: "21 & Over",
+    tickets: "https://www.skeletix.com/4653-stranger-attractions-presents-to-violently/",
+    facebook: "https://www.facebook.com/events/2286035835263934/",
+    poster: "assets/posters/to-violently-vomit.jpg",
+    tag: "Disgorge US live show"
+  },
+{
     headliner: "SIX FEET UNDER",
     support: ["Fuming Mouth", "Flesher", "1 Body 6 Graves"],
     date: "2026-08-14",
@@ -73,7 +73,7 @@ const EVENTS = [
     poster: "assets/posters/six-feet-under.jpg",
     tag: "Legendary Death Metal"
   },
-  {
+{
     headliner: "REZN",
     support: ["Lume", "Isolation Drills"],
     date: "2026-08-19",
@@ -88,7 +88,7 @@ const EVENTS = [
     poster: "assets/posters/rezn.jpg",
     tag: "Doom (Chicago, IL)"
   },
-  {
+{
     headliner: "HELL IS REAL FEST",
     support: ["Profanatica", "Morbosidad", "Black Altar", "Cloak", "Valdrin", "Poltergeist", "Angel Massacre", "Arsine Ingest"],
     date: "2026-08-22",
@@ -103,7 +103,7 @@ const EVENTS = [
     poster: "assets/posters/hell-is-real-fest.jpg",
     tag: "Black & Death Metal Fest"
   },
-  {
+{
     headliner: "HIPPIE DEATH CULT",
     support: ["The Well", "Moon Destroys", "Ancient Days"],
     date: "2026-09-03",
@@ -118,7 +118,7 @@ const EVENTS = [
     poster: "assets/posters/hippie-death-cult.jpg",
     tag: "Heavy Psych Doom (Portland)"
   },
-  {
+{
     headliner: "VEILCASTE",
     support: ["Crop", "Lordship", "Thorr-Axe"],
     date: "2026-09-04",
@@ -133,37 +133,7 @@ const EVENTS = [
     poster: "assets/posters/veilcaste.jpg",
     tag: "“Hellward” Release Show"
   },
-  {
-    headliner: "MONOLORD",
-    support: ["Khemmis", "Mother of Graves"],
-    date: "2026-09-10",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "7:00 PM",
-    show: "8:00 PM",
-    price: "$28",
-    age: "All Ages",
-    tickets: "https://www.skeletix.com/4414-stranger-attractions-presents-monolord/",
-    facebook: "https://www.facebook.com/events/786733734169167/",
-    poster: "assets/posters/monolord.jpg",
-    tag: "Doom (Sweden)"
-  },
-  {
-    headliner: "CASTLE",
-    support: ["Bastard Cross", "Blasted Heath"],
-    date: "2026-09-11",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "7:00 PM",
-    show: "8:00 PM",
-    price: "$16",
-    age: "All Ages",
-    tickets: "https://www.skeletix.com/4673-stranger-attractions-presents-castle-bl/",
-    facebook: "https://www.facebook.com/events/1585299696551628/",
-    poster: "assets/posters/castle.jpg",
-    tag: "Heavy Metal (Canada)"
-  },
-  {
+{
     headliner: "FIRES IN THE DISTANCE",
     support: ["Hinayana"],
     date: "2026-09-06",
@@ -178,7 +148,37 @@ const EVENTS = [
     poster: "assets/posters/fires-in-the-distance.jpg",
     tag: "Melodic Death Doom (CT)"
   },
-  {
+{
+    headliner: "MONOLORD",
+    support: ["Khemmis", "Mother of Graves"],
+    date: "2026-09-10",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "7:00 PM",
+    show: "8:00 PM",
+    price: "$28",
+    age: "All Ages",
+    tickets: "https://www.skeletix.com/4414-stranger-attractions-presents-monolord/",
+    facebook: "https://www.facebook.com/events/786733734169167/",
+    poster: "assets/posters/monolord.jpg",
+    tag: "Doom (Sweden)"
+  },
+{
+    headliner: "CASTLE",
+    support: ["Bastard Cross", "Blasted Heath"],
+    date: "2026-09-11",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "7:00 PM",
+    show: "8:00 PM",
+    price: "$16",
+    age: "All Ages",
+    tickets: "https://www.skeletix.com/4673-stranger-attractions-presents-castle-bl/",
+    facebook: "https://www.facebook.com/events/1585299696551628/",
+    poster: "assets/posters/castle.jpg",
+    tag: "Heavy Metal (Canada)"
+  },
+{
     headliner: "VOID",
     support: ["Phantom", "Sacred Leather"],
     date: "2026-09-16",
@@ -193,22 +193,7 @@ const EVENTS = [
     poster: "assets/posters/void.jpg",
     tag: "Thrash (Louisiana)"
   },
-  {
-    headliner: "SADNESS",
-    support: ["Barbelith", "Monterey"],
-    date: "2026-10-07",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "7:00 PM",
-    show: "7:30 PM",
-    price: "$16",
-    age: "All Ages",
-    tickets: "https://skeletix.com/4697-stranger-attractions-presents-black-circl/",
-    facebook: "",
-    poster: "assets/posters/sadness.jpg",
-    tag: "Atmospheric Black Metal"
-  },
-  {
+{
     headliner: "FRIZZI 2 FULCI",
     support: ["Ethan McCarthy"],
     date: "2026-10-07",
@@ -224,6 +209,21 @@ const EVENTS = [
     tag: "Fabio Frizzi Performs Fulci Scores"
   },
   {
+    headliner: "SADNESS",
+    support: ["Barbelith", "Monterey"],
+    date: "2026-10-07",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "7:00 PM",
+    show: "7:30 PM",
+    price: "$16",
+    age: "All Ages",
+    tickets: "https://www.skeletix.com/4697-stranger-attractions-presents-black-circl/",
+    facebook: "",
+    poster: "assets/posters/sadness.jpg",
+    tag: ""
+  },
+{
     headliner: "PSYCROPTIC",
     support: ["Inferi", "Cognitive", "Summoning the Lich"],
     date: "2026-12-04",
@@ -237,5 +237,5 @@ const EVENTS = [
     facebook: "https://www.facebook.com/events/1345150461121456/",
     poster: "assets/posters/psycroptic.jpg",
     tag: "Tech Death (Australia)"
-  }
+  },
 ];
