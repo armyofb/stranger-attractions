@@ -221,7 +221,7 @@ const EVENTS = [
     tickets: "https://www.skeletix.com/4697-stranger-attractions-presents-black-circl/",
     facebook: "",
     poster: "assets/posters/sadness.jpg",
-    tag: ""
+    tag: "Atmospheric Black Metal"
   },
 {
     headliner: "PSYCROPTIC",
