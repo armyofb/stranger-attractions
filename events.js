@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-07-28T11:16:00-04:00";
-const LAST_CHECKED = "2026-07-29T10:00:03-04:00";
+const LAST_UPDATED = "2026-07-29T18:00:04-04:00";
+const LAST_CHECKED = "2026-07-29T18:00:04-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -193,6 +193,21 @@ const EVENTS = [
     facebook: "https://www.facebook.com/events/829817206735106/",
     poster: "assets/posters/void.jpg",
     tag: "Thrash (Louisiana)"
+  },
+  {
+    headliner: "LORDS OF THE TRIDENT W/ FAERIE RING & THRONE OF IRON",
+    support: ["Faerie Ring", "Throne of Iron"],
+    date: "2026-10-01",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "7:00 PM",
+    show: "8:00 PM",
+    price: "$16",
+    age: "All Ages",
+    tickets: "https://www.skeletix.com/4737-stranger-attractions-presents-lords-of-the/",
+    facebook: "",
+    poster: "assets/posters/lords-of-the-trident-w-faerie-ring-throne-of-iron.jpg",
+    tag: ""
   },
   {
     headliner: "FRIZZI 2 FULCI",
