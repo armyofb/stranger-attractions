@@ -115,13 +115,24 @@
   s.textContent = JSON.stringify(ld);
   document.head.appendChild(s);
 
-  // Footer "shows last updated" stamp, always displayed in Indy time.
+  // Footer stamps, always displayed in Indy time: when the listings last
+  // changed, and when the refresher last checked for changes.
   const luEl = document.getElementById("last-updated");
-  if (luEl && typeof LAST_UPDATED !== "undefined") {
-    const lu = new Date(LAST_UPDATED);
-    if (!isNaN(lu)) {
-      const opts = { timeZone: "America/Indiana/Indianapolis", month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" };
-      luEl.textContent = "Shows last updated " + new Intl.DateTimeFormat("en-US", opts).format(lu) + " ET";
+  if (luEl) {
+    const opts = { timeZone: "America/Indiana/Indianapolis", month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" };
+    const fmt = iso => {
+      const d = new Date(iso);
+      return isNaN(d) ? null : new Intl.DateTimeFormat("en-US", opts).format(d) + " ET";
+    };
+    const parts = [];
+    if (typeof LAST_UPDATED !== "undefined") {
+      const s = fmt(LAST_UPDATED);
+      if (s) parts.push("Shows last updated " + s);
     }
+    if (typeof LAST_CHECKED !== "undefined") {
+      const s = fmt(LAST_CHECKED);
+      if (s) parts.push("last checked " + s);
+    }
+    luEl.textContent = parts.join(" · ");
   }
 })();

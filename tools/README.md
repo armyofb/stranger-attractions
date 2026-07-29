@@ -35,8 +35,12 @@ are preserved; new entries get `""` and the card simply omits the FB button.
 - Prunes shows more than 30 days past (and their posters).
 - Re-sorts entries by date; **preserves existing entries verbatim**, so hand-written
   `tag` text and `facebook` links survive.
-- Bumps `LAST_UPDATED` (the site footer stamp) only when something actually changed.
-- Commits and pushes only when something changed. No change → no commit, no deploy.
+- Maintains two footer stamps in `events.js`:
+  - `LAST_UPDATED` — bumped only when the show listings actually changed.
+  - `LAST_CHECKED` — bumped on **every** successful run, so the public footer proves the
+    refresher is still alive even on a quiet day. (This means a small commit + deploy on
+    every run: ~2/day, versus Cloudflare Pages' 500 builds/month free allowance.)
+  If either constant is missing from a hand-edited `events.js`, the script re-inserts it.
 - Never deletes a *future* show, even if it disappears from the index.
 - **State Street Pub is forced to `21 & Over`** — the venue is 21+ and Skeletix listings
   sometimes say "ALL AGES".

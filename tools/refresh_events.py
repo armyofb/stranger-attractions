@@ -423,11 +423,9 @@ def main():
         for date, venue, title, eid in sorted(maybe):
             log(f"      {date} | {venue} | {title} [{eid}]")
 
-    if not added and not pruned:
-        log("no changes")
-        log("=== refresh done ===")
-        flush_log()
-        return 0
+    changed = bool(added or pruned)
+    if not changed:
+        log("no show changes")
 
     if args.dry_run:
         log(f"[dry-run] would add {len(added)}, prune {len(pruned)}")
@@ -442,7 +440,8 @@ def main():
         return entry_field(block, "date") or "9999-99-99"
 
     blocks.sort(key=sort_key)
-    blocks = [b.rstrip().rstrip(",") for b in blocks if b.strip()]
+    # entries are captured from their opening brace, so re-add the file's indent
+    blocks = ["  " + b.strip().rstrip(",") for b in blocks if b.strip()]
     if not blocks:
         log("! refusing to write an empty EVENTS array")
         flush_log()
@@ -452,11 +451,28 @@ def main():
 
     stamp = dt.datetime.now().astimezone().strftime("%Y-%m-%dT%H:%M:%S%z")
     stamp = stamp[:-2] + ":" + stamp[-2:]
-    new_text = re.sub(r'const LAST_UPDATED = "[^"]*";', f'const LAST_UPDATED = "{stamp}";', new_text)
+    # LAST_CHECKED moves every run, so the footer proves the refresher is alive;
+    # LAST_UPDATED moves only when the listings actually changed.
+    checked_line = f'const LAST_CHECKED = "{stamp}";'
+    if re.search(r'const LAST_CHECKED = "[^"]*";', new_text):
+        new_text = re.sub(r'const LAST_CHECKED = "[^"]*";', checked_line, new_text)
+    else:  # constant missing (hand-edited file) — add it next to LAST_UPDATED
+        new_text = re.sub(
+            r'(const LAST_UPDATED = "[^"]*";)', r"\1\n" + checked_line, new_text, count=1
+        )
+        log("added missing LAST_CHECKED constant to events.js")
+    if changed:
+        new_text = re.sub(r'const LAST_UPDATED = "[^"]*";', f'const LAST_UPDATED = "{stamp}";', new_text)
+
+    if new_text == text:
+        log("events.js byte-identical, nothing to commit")
+        log("=== refresh done ===")
+        flush_log()
+        return 0
 
     with open(EVENTS_JS, "w", encoding="utf-8") as fh:
         fh.write(new_text)
-    log(f"events.js rewritten: {len(blocks)} shows, LAST_UPDATED={stamp}")
+    log(f"events.js rewritten: {len(blocks)} shows, LAST_CHECKED={stamp}" + (f", LAST_UPDATED={stamp}" if changed else ""))
 
     if args.no_git:
         log("--no-git: skipping commit/push")
@@ -464,10 +480,14 @@ def main():
         flush_log()
         return 0
 
-    names = ", ".join(f"{e['headliner']} ({e['date']})" for e in added) or "housekeeping"
-    subject = f"Auto-update shows: {names}" if added else "Auto-update: prune past shows"
-    if len(subject) > 100:
-        subject = f"Auto-update shows: added {len(added)}, pruned {len(pruned)}"
+    if added:
+        subject = "Auto-update shows: " + ", ".join(f"{e['headliner']} ({e['date']})" for e in added)
+        if len(subject) > 100:
+            subject = f"Auto-update shows: added {len(added)}, pruned {len(pruned)}"
+    elif pruned:
+        subject = f"Auto-update: prune {len(pruned)} past show(s)"
+    else:
+        subject = "Auto-check: no show changes"
     try:
         git("add", "-A")
         if not git("status", "--porcelain"):
