@@ -108,7 +108,9 @@ def derive_headliner(hit):
         m = re.search(r"stranger\s+attractions[^:]{0,40}?presents\s*:?\s*", text, re.I)
         if m:
             text = text[m.end():]
-        text = re.split(r"\s+(?:with|w/|featuring|feat\.?|ft\.?)\b", text, flags=re.I)[0]
+        # NB: \b after "w/" never matches (slash is not a word char), so use an
+        # explicit whitespace lookahead or headliners keep their support acts.
+        text = re.split(r"\s+(?:with|w/|featuring|feat\.?|ft\.?)(?=\s)", text, flags=re.I)[0]
         text = re.split(r"\s+at\s+", text, flags=re.I)[0]
         text = re.sub(r"\(.*?\)", "", text)
         text = text.strip(" !?.,:;-–—")

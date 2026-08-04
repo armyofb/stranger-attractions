@@ -38,17 +38,25 @@
       e.show ? `Show <strong>${esc(e.show)}</strong>` : ""
     ].filter(Boolean).join(" &nbsp;·&nbsp; ");
 
-    return `
-    <article class="card">
-      <a class="card-poster" href="${esc(e.tickets)}" target="_blank" rel="noopener" aria-label="Tickets for ${esc(e.headliner)}">
-        <img src="${esc(e.poster)}" alt="${esc(e.headliner)} show poster" loading="lazy">
+    // Door-only shows (no presale) have no ticket URL — fall back to the
+    // Facebook event, and if the poster is missing show the band name instead
+    // of a broken image.
+    const primary = e.tickets || e.facebook || "";
+    const posterInner = `
+        <span class="poster-fallback">${esc(e.headliner)}</span>
+        ${e.poster ? `<img src="${esc(e.poster)}" alt="${esc(e.headliner)} show poster" loading="lazy" onerror="this.remove()">` : ""}
         <span class="card-date">
           <span class="d-month">${MONTHS[e.when.getMonth()]}</span>
           <span class="d-day">${e.when.getDate()}</span>
           <span class="d-dow">${DOWS[e.when.getDay()]}</span>
         </span>
-        ${badge}
-      </a>
+        ${badge}`;
+
+    return `
+    <article class="card">
+      ${primary
+        ? `<a class="card-poster" href="${esc(primary)}" target="_blank" rel="noopener" aria-label="More about ${esc(e.headliner)}">${posterInner}</a>`
+        : `<div class="card-poster">${posterInner}</div>`}
       <div class="card-body">
         ${e.tag ? `<span class="card-tag">${esc(e.tag)}</span>` : ""}
         <h3 class="card-title">${esc(e.headliner)}</h3>
@@ -56,12 +64,16 @@
         <div class="card-meta">
           <span><strong>${esc(e.venue)}</strong></span>
           ${times ? `<span>${times}</span>` : ""}
-          ${e.price ? `<span><strong>${esc(e.price)}</strong></span>` : ""}
+          ${e.price ? `<span><strong>${esc(e.price)}</strong>${e.tickets ? "" : " at the door"}</span>` : ""}
           ${e.age ? `<span>${esc(e.age)}</span>` : ""}
         </div>
         <div class="card-actions">
-          <a class="btn-tickets" href="${esc(e.tickets)}" target="_blank" rel="noopener">Get Tickets</a>
-          ${e.facebook ? `<a class="btn-fb" href="${esc(e.facebook)}" target="_blank" rel="noopener">FB Event</a>` : ""}
+          ${e.tickets
+            ? `<a class="btn-tickets" href="${esc(e.tickets)}" target="_blank" rel="noopener">Get Tickets</a>`
+            : e.facebook
+              ? `<a class="btn-tickets" href="${esc(e.facebook)}" target="_blank" rel="noopener">Event Info</a>`
+              : `<span class="btn-door">No presale · pay at the door</span>`}
+          ${e.tickets && e.facebook ? `<a class="btn-fb" href="${esc(e.facebook)}" target="_blank" rel="noopener">FB Event</a>` : ""}
         </div>
       </div>
     </article>`;
@@ -102,7 +114,7 @@
         "organizer": { "@id": SITE + "/#org" },
         "offers": {
           "@type": "Offer",
-          "url": e.tickets,
+          "url": e.tickets || e.facebook || SITE + "/",
           "price": (e.price || "").replace("$", ""),
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock"

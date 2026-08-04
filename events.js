@@ -150,7 +150,7 @@ const EVENTS = [
     tag: "Melodic Death Doom (CT)"
   },
   {
-    headliner: "NAK’AY W/ IMPULSE NOISE , GENESTEALER  & THLURM",
+    headliner: "NAK’AY",
     support: ["Impulse Noise", "Genestealer", "Thlurm"],
     date: "2026-09-09",
     venue: "Black Circle",
@@ -195,6 +195,21 @@ const EVENTS = [
     tag: "Heavy Metal (Canada)"
   },
   {
+    headliner: "GRAVERIPPER",
+    support: ["Raider", "Huntsmen", "Nequient"],
+    date: "2026-09-13",
+    venue: "State Street Pub",
+    address: "243 N State Ave, Indianapolis, IN 46201",
+    doors: "7:00 PM",
+    show: "",
+    price: "$15",
+    age: "21 & Over",
+    tickets: "",
+    facebook: "",
+    poster: "assets/posters/graveripper.jpg",
+    tag: "No presale — cash at the door"
+  },
+  {
     headliner: "VOID",
     support: ["Phantom", "Sacred Leather"],
     date: "2026-09-16",
@@ -210,7 +225,7 @@ const EVENTS = [
     tag: "Thrash (Louisiana)"
   },
   {
-    headliner: "LORDS OF THE TRIDENT W/ FAERIE RING & THRONE OF IRON",
+    headliner: "LORDS OF THE TRIDENT",
     support: ["Faerie Ring", "Throne of Iron"],
     date: "2026-10-01",
     venue: "Black Circle",
