@@ -1,3 +1,6 @@
 tools/refresh.log
 tools/refresh-runner.log
+tools/__pycache__/
+__pycache__/
+*.pyc
 *.bak
