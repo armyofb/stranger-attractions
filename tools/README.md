@@ -10,6 +10,27 @@ Same reasoning as the AA scraper: this job is **deterministic**. Fetch JSON, dif
 an LLM in the loop only adds cost, latency, and interactive approval prompts that stall
 unattended runs. Scheduled task = persistence, not intelligence.
 
+## Two sources
+
+| Source | Script | Covers |
+|---|---|---|
+| Skeletix (Algolia JSON) | `refresh_events.py` | every show with a presale |
+| Facebook (real Chrome) | `fb_scan.py` | door-only shows with no presale |
+
+`refresh_events.bat` runs `fb_scan.py` first, then `refresh_events.py`. Facebook is
+non-fatal: if the browser or login profile is unavailable, Skeletix still refreshes.
+
+### One-time Facebook setup
+
+```
+python tools/fb_scan.py --login
+```
+
+Opens Chrome, you log in to Facebook, close the window. The session lives in
+`tools/fb_profile/` (gitignored). Verify with `python tools/fb_scan.py --dry-run`.
+If a real run finds no posts, try `--headed` — Facebook may be refusing the
+headless browser, in which case flip the default in `refresh_events.bat`.
+
 ## Where the data comes from
 
 Skeletix (his ticketing platform) is a BigCommerce storefront whose event pages render
@@ -24,9 +45,25 @@ source. The index holds only current/on-sale events, and each record is fully st
 ISO date, doors/show times, age restriction, venue with street address, act list, ticket
 price, ticket URL, and a 1280px poster URL. No HTML scraping.
 
-Facebook is deliberately **not** consulted: every show he sells tickets for is on Skeletix,
-and Facebook needs a logged-in browser session. `facebook` fields already in `events.js`
-are preserved; new entries get `""` and the card simply omits the FB button.
+### Facebook (`fb_scan.py`)
+
+Facebook has no usable public API here and blocks plain HTTP, so this drives a real
+logged-in Chrome via Patchright from the NUC — the same reasoning as the AA scraper.
+It reads two things: the page's **upcoming events** list, and the **top few posts**
+(door-only shows are often just a post with a flyer). Flyer images are upsized to the
+source resolution by swapping the CDN's `ctp=` size param for the `cstp=` maximum.
+
+Results go to `tools/fb_candidates.json`; `refresh_events.py` merges them.
+
+**Hard limitation:** Facebook will not paginate the post feed under automation — only
+the newest few posts are ever reachable. That works because a door-only show *is* the
+top post when it's announced, which is why the scan runs twice daily rather than weekly.
+A post that scrolls away between runs is missed permanently.
+
+**Safety rule:** a post is prose, not a database row. A Facebook-derived show is only
+published automatically when headliner, date, venue, price and age all parsed cleanly.
+Anything short of that is logged as `NEEDS REVIEW` and left off the site — a wrong date
+on a promoter's site sends people to the venue on the wrong night.
 
 ## Behavior
 
