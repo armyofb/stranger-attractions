@@ -581,9 +581,12 @@ def main():
         subject = f"Auto-update: prune {len(pruned)} past show(s)"
     else:
         subject = "Auto-check: no show changes"
+    # Stage ONLY what this script owns. `git add -A` would sweep up whatever else
+    # happens to be in the working tree and commit it under an automated message.
+    owned = ["events.js", "assets/posters"]
     try:
-        git("add", "-A")
-        if not git("status", "--porcelain"):
+        git("add", *owned)
+        if not git("status", "--porcelain", "--", *owned):
             log("nothing staged, skipping commit")
         else:
             git("commit", "-m", subject, "-m", "Automated by tools/refresh_events.py")
