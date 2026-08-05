@@ -284,7 +284,7 @@ def render_entry(ev):
         f"    price: {js_str(ev['price'])},\n"
         f"    age: {js_str(ev['age'])},\n"
         f"    tickets: {js_str(ev['tickets'])},\n"
-        f"    facebook: \"\",\n"
+        f"    facebook: {js_str(ev.get('facebook') or '')},\n"
         f"    poster: {js_str(ev['poster'])},\n"
         f"    tag: \"\"\n"
         "  },"
@@ -321,6 +321,93 @@ def hit_to_event(hit):
 
 
 # --- git ------------------------------------------------------------------
+
+
+FB_CANDIDATES = os.path.join(REPO, "tools", "fb_candidates.json")
+FB_MAX_AGE_HOURS = 18
+# A Facebook post is prose, not a database row. Only publish one automatically
+# when every field we need parsed cleanly; anything short of that gets logged
+# for a human instead of guessed at, because a wrong date on a promoter's site
+# sends people to the venue on the wrong night.
+FB_REQUIRED = ("headliner", "date", "venue", "price", "age")
+
+
+def norm_name(name):
+    return re.sub(r"[^a-z0-9]", "", (name or "").lower())
+
+
+def merge_facebook(entries, skeletix_added, today, args):
+    """Fold fb_scan.py's candidates in. Returns (auto_added, needs_review)."""
+    if not os.path.exists(FB_CANDIDATES):
+        return [], []
+    try:
+        with open(FB_CANDIDATES, "r", encoding="utf-8") as fh:
+            payload = json.load(fh)
+    except (OSError, ValueError) as exc:
+        log(f"! could not read fb candidates: {exc}")
+        return [], []
+
+    scanned = payload.get("scanned_at") or ""
+    try:
+        age = (dt.datetime.now().astimezone() - dt.datetime.fromisoformat(scanned)).total_seconds() / 3600
+    except ValueError:
+        age = 999
+    if age > FB_MAX_AGE_HOURS:
+        log(f"! fb candidates are {age:.0f}h old — ignoring (is fb_scan.py running?)")
+        return [], []
+
+    known = set()
+    for entry in entries + [render_entry(e) for e in skeletix_added]:
+        known.add((norm_name(entry_field(entry, "headliner")), entry_field(entry, "date")))
+
+    auto, review = [], []
+    for cand in payload.get("candidates") or []:
+        key = (norm_name(cand.get("headliner")), cand.get("date") or "")
+        if key in known:
+            continue
+        try:
+            if dt.date.fromisoformat(cand["date"]) < today:
+                continue
+        except (KeyError, ValueError):
+            continue
+        missing = [f for f in FB_REQUIRED if not cand.get(f)]
+        if missing:
+            review.append((cand, missing))
+            continue
+        slug = slugify(cand["headliner"])
+        poster_rel = f"assets/posters/{slug}.jpg"
+        got_poster = False
+        if cand.get("image"):
+            try:
+                got_poster = download_poster(
+                    cand["image"], os.path.join(REPO, poster_rel.replace("/", os.sep)), args.dry_run)
+            except Exception as exc:
+                log(f"    ! poster download failed: {str(exc)[:120]}")
+        ev = {
+            "headliner": cand["headliner"],
+            "support": cand.get("support") or [],
+            "date": cand["date"],
+            "venue": cand["venue"],
+            "address": cand.get("address") or "",
+            "doors": cand.get("doors") or "",
+            "show": cand.get("show") or "",
+            "price": cand["price"],
+            "age": cand["age"],
+            "tickets": "",  # door-only by definition; Skeletix shows come in via Part A
+            "facebook": cand.get("facebook") or "",
+            "poster": poster_rel if got_poster else "",
+            "event_id": cand.get("fb_id") or f"fb-{slug}-{cand['date']}",
+            "poster_url": cand.get("image"),
+        }
+        log(f"  + NEW (facebook/{cand['source']}): {ev['headliner']} — {ev['date']} @ "
+            f"{ev['venue']} ({ev['age']}, {ev['price']})")
+        auto.append(ev)
+        known.add(key)
+
+    for cand, missing in review:
+        log(f"  NEEDS REVIEW (facebook): {cand.get('headliner')} {cand.get('date')} "
+            f"@ {cand.get('venue')} — missing {', '.join(missing)}")
+    return auto, review
 
 
 def git(*args, check=True):
@@ -406,6 +493,10 @@ def main():
                 os.remove(path)
             except OSError:
                 pass
+
+    # Facebook-only shows (door-only, no Skeletix listing) picked up by fb_scan.py
+    fb_added, fb_review = merge_facebook(entries, added, today, args)
+    added.extend(fb_added)
 
     # shows at his venues that our query didn't match — humans decide
     seen_ids = known_ids | {e["event_id"] for e in added}

@@ -1,5 +1,7 @@
 tools/refresh.log
 tools/refresh-runner.log
+tools/fb_profile/
+tools/fb_candidates.json
 tools/__pycache__/
 __pycache__/
 *.pyc
