@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-08-03T18:00:04-04:00";
-const LAST_CHECKED = "2026-08-08T10:00:18-04:00";
+const LAST_UPDATED = "2026-08-08T18:00:20-04:00";
+const LAST_CHECKED = "2026-08-08T18:00:20-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -268,6 +268,21 @@ const EVENTS = [
     facebook: "",
     poster: "assets/posters/sadness.jpg",
     tag: "Atmospheric Black Metal"
+  },
+  {
+    headliner: "EYEHATEGOD",
+    support: ["Cavity", "Bl'ast", "Luicidal", "Evil Army"],
+    date: "2026-10-10",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "6:00 PM",
+    show: "6:30 PM",
+    price: "$35",
+    age: "All Ages",
+    tickets: "https://www.skeletix.com/4772-stranger-attractions-presents-eyehategod/",
+    facebook: "",
+    poster: "assets/posters/eyehategod.jpg",
+    tag: ""
   },
   {
     headliner: "PSYCROPTIC",
