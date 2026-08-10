@@ -95,6 +95,28 @@ python tools/refresh_events.py --no-git     # write events.js but don't commit/p
 python tools/refresh_events.py              # normal (what the scheduled task runs)
 ```
 
+## Remote trigger (from your phone)
+
+Open **`https://armyofb.pythonanywhere.com/sa/?key=<KEY>`** and tap the button.
+Bookmark it. The page also shows the result of the last run.
+
+PythonAnywhere only holds a flag — it cannot do the work itself (Facebook needs the
+logged-in Chrome profile, the push needs git credentials, and PA runs from datacenter
+IPs). The NUC polls every 2 minutes via the **StrangerAttractionsRemoteTrigger**
+scheduled task, claims the job, runs the same two scans, and posts a summary back.
+Turnaround is under ~2.5 minutes. Same division of labour as the AA scraper.
+
+Pieces:
+- `pa_sa_blueprint.py` — deployed to `/home/armyofb/sa-trigger/sa_blueprint.py`, registered
+  by `aa_calc/flask_app.py`. Key lives in `trigger_key.txt` beside it on PA.
+- `trigger_poll.py` — the NUC poller.
+- `tools/pa_trigger_key.txt` — local copy of the key (**gitignored**).
+- `pa_flask_app.BACKUP.py` — the pre-change copy of PA's `flask_app.py`, in case the
+  blueprint registration ever needs reverting.
+
+The blueprint registration is wrapped in try/except exactly like the existing ones, so
+a failure there logs and is skipped rather than taking the AA calculator down.
+
 ## Scheduled task
 
 Registered as **StrangerAttractionsEventRefresh**, running `tools/refresh_events.bat`
