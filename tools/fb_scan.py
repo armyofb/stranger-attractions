@@ -29,6 +29,7 @@ import datetime as dt
 import json
 import os
 import re
+import subprocess
 import sys
 import time
 
@@ -83,11 +84,32 @@ def _clean_profile_locks():
             pass
 
 
+def _kill_stray_chrome():
+    """Kill Chrome processes still holding OUR profile directory.
+
+    A crashed or interrupted run leaves chrome.exe alive on fb_profile; every
+    later launch then dies with "Opening in existing browser session", which
+    looks like a Facebook problem but isn't. Matching on the profile path means
+    the user's normal Chrome is never touched.
+    """
+    ps = (
+        "Get-CimInstance Win32_Process -Filter \"Name='chrome.exe'\" | "
+        "Where-Object { $_.CommandLine -like '*fb_profile*' } | "
+        "ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }"
+    )
+    try:
+        subprocess.run(["powershell", "-NoProfile", "-NonInteractive", "-Command", ps],
+                       capture_output=True, timeout=60)
+    except Exception:
+        pass
+
+
 def launch(pw, headless):
     """Persistent real-Chrome context. Real Chrome (channel='chrome') matters:
     Facebook fingerprints bundled Chromium and serves a degraded page."""
     last = None
     for attempt in range(3):
+        _kill_stray_chrome()
         _clean_profile_locks()
         try:
             return pw.chromium.launch_persistent_context(
@@ -387,24 +409,53 @@ def scan_posts(page):
 # --- main ------------------------------------------------------------------
 
 
-def do_login():
+def do_login(timeout_s=900):
+    """Open a visible browser and wait until the session is actually logged in.
+
+    Detects success and closes itself; earlier versions waited for the user to
+    close the window, which left orphaned chrome.exe processes holding the
+    profile and made every later launch fail.
+    """
     from patchright.sync_api import sync_playwright
 
     os.makedirs(PROFILE, exist_ok=True)
-    print("Opening Chrome. Log in to Facebook, then close the browser window.")
+    print("Opening Chrome — log in to Facebook in that window.")
+    print("This closes itself as soon as login is detected. Ctrl+C to abort.\n")
+    ok = False
     with sync_playwright() as pw:
         ctx = launch(pw, headless=False)
-        page = ctx.pages[0] if ctx.pages else ctx.new_page()
-        page.goto(PAGE, wait_until="domcontentloaded", timeout=60000)
-        while True:
-            time.sleep(3)
-            try:
-                if not ctx.pages:
+        try:
+            page = ctx.pages[0] if ctx.pages else ctx.new_page()
+            page.goto(PAGE, wait_until="domcontentloaded", timeout=60000)
+            deadline = time.time() + timeout_s
+            announced = False
+            while time.time() < deadline:
+                time.sleep(3)
+                try:
+                    if not ctx.pages:          # window closed by hand
+                        break
+                    if logged_in(page):
+                        ok = True
+                        break
+                    if not announced:
+                        announced = True
+                        print("waiting for login… (page: %s)" % page.url[:70])
+                except Exception:
                     break
+            if ok:
+                print("Login detected — letting cookies settle…")
+                time.sleep(4)
+        finally:
+            try:
+                ctx.close()                    # release the profile cleanly
             except Exception:
-                break
-    print("Profile saved. Run `python tools/fb_scan.py --dry-run` to test.")
-    return 0
+                pass
+    _kill_stray_chrome()
+    if ok:
+        print("\nProfile saved. Verify with: python tools/fb_scan.py --dry-run")
+        return 0
+    print("\nDid not detect a logged-in session. Nothing saved; rerun --login.")
+    return 1
 
 
 def main():
