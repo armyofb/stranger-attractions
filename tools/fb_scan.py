@@ -127,13 +127,19 @@ def launch(pw, headless):
 
 
 def logged_in(page):
+    """True when the profile holds an authenticated Facebook session.
+
+    Tested via the c_user cookie, not the URL: after a successful login Facebook
+    often parks on /login/save-device or a similar interstitial, and a path-based
+    check would report 'not logged in' forever while the user sat there logged in.
+    """
     try:
-        return page.evaluate(
-            "() => !document.querySelector('input[name=\"pass\"]')"
-            " && !/login|checkpoint/.test(location.pathname)"
-        )
+        for cookie in page.context.cookies("https://www.facebook.com"):
+            if cookie.get("name") == "c_user" and cookie.get("value"):
+                return True
     except Exception:
-        return False
+        pass
+    return False
 
 
 # --- parsing helpers -------------------------------------------------------
