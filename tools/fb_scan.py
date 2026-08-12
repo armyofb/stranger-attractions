@@ -53,6 +53,9 @@ MONTHS = {
     "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
     "jul": 7, "aug": 8, "sep": 9, "sept": 9, "oct": 10, "nov": 11, "dec": 12,
 }
+WEEKDAYS = {"monday": 0, "tuesday": 1, "wednesday": 2, "thursday": 3,
+            "friday": 4, "saturday": 5, "sunday": 6}
+MONTH_RE = "jan|feb|mar|apr|may|jun|jul|aug|sept|sep|oct|nov|dec"
 
 ZERO_WIDTH = re.compile(r"[​-‏‪-‮⁠-⁯﻿]")
 
@@ -158,24 +161,41 @@ def find_venue(text):
 
 
 def parse_date(text, today):
-    """Pull a show date out of promoter prose. Returns ISO date or None.
+    """Pull a show date out of Facebook text. Returns ISO date or None.
 
-    Handles 'Sunday, September 13th', 'Sept 13', 'September 13th', '9/13'.
+    Covers both the promoter's prose ('Sunday, September 13th', 'Sept 13',
+    '9/13') and the formats Facebook's own event list uses, which are easy to
+    miss: '14 Aug' puts the day FIRST, and near-term events are shown purely
+    relatively — 'Today at 19:00', 'Tomorrow at 18:30', 'This Friday at 18:30'.
     A month/day already past is read as next year.
     """
     text = clean(text)
-    m = re.search(
-        r"\b(jan|feb|mar|apr|may|jun|jul|aug|sept|sep|oct|nov|dec)[a-z]*\.?\s+(\d{1,2})(?:st|nd|rd|th)?\b",
-        text, re.I,
-    )
-    month = day = None
+    low = text.lower()
+
+    if re.search(r"\btoday\b", low):
+        return today.isoformat()
+    if re.search(r"\btomorrow\b", low):
+        return (today + dt.timedelta(days=1)).isoformat()
+    m = re.search(r"\b(this|next)\s+(" + "|".join(WEEKDAYS) + r")\b", low)
     if m:
-        month = MONTHS.get(m.group(1).lower())
-        day = int(m.group(2))
+        delta = (WEEKDAYS[m.group(2)] - today.weekday()) % 7
+        if delta == 0 or m.group(1) == "next":
+            delta = delta or 7
+        return (today + dt.timedelta(days=delta)).isoformat()
+
+    month = day = None
+    m = re.search(r"\b(\d{1,2})(?:st|nd|rd|th)?\s+(" + MONTH_RE + r")[a-z]*\.?", low)
+    if m:  # "14 Aug" / "4 Dec"
+        day, month = int(m.group(1)), MONTHS.get(m.group(2))
     else:
-        m2 = re.search(r"\b(\d{1,2})/(\d{1,2})\b", text)
-        if m2:
-            month, day = int(m2.group(1)), int(m2.group(2))
+        m = re.search(r"\b(" + MONTH_RE + r")[a-z]*\.?\s+(\d{1,2})(?:st|nd|rd|th)?\b", low)
+        if m:  # "Sept 13" / "September 13th"
+            month, day = MONTHS.get(m.group(1)), int(m.group(2))
+        else:
+            m = re.search(r"\b(\d{1,2})/(\d{1,2})\b", low)
+            if m:
+                month, day = int(m.group(1)), int(m.group(2))
+
     if not month or not day or day > 31:
         return None
     year = today.year
@@ -272,16 +292,26 @@ def full_size(url):
 
 # --- scanners --------------------------------------------------------------
 
+# Climb only while the ancestor still describes ONE event. A fixed number of
+# hops overshoots into the shared list container, which hands every event the
+# same blob of text (and therefore the first event's date).
 EVENTS_JS = """
 () => {
+  const idOf = el => ((el.href || '').match(/\\/events\\/(\\d+)/) || [])[1];
   const out = {};
   document.querySelectorAll('a[href*="/events/"]').forEach(a => {
-    const m = a.href.match(/\\/events\\/(\\d+)/);
-    if (!m) return;
-    let el = a;
-    for (let i = 0; i < 7 && el && el.parentElement; i++) el = el.parentElement;
-    const txt = (el ? el.innerText : '') || a.innerText || '';
-    if (!out[m[1]] || txt.length > out[m[1]].length) out[m[1]] = txt;
+    const id = idOf(a);
+    if (!id) return;
+    let el = a, card = a;
+    for (let i = 0; i < 8 && el && el.parentElement; i++) {
+      el = el.parentElement;
+      const ids = new Set([...el.querySelectorAll('a[href*="/events/"]')]
+        .map(idOf).filter(Boolean));
+      if (ids.size > 1) break;
+      card = el;
+    }
+    const txt = card.innerText || '';
+    if (!out[id] || txt.length > out[id].length) out[id] = txt;
   });
   return out;
 }
@@ -360,38 +390,65 @@ def scan_events(page):
 
 
 def scan_posts(page):
+    """Read announcement posts off the page body.
+
+    Deliberately NOT scoped to div[role="article"]: on this page those are empty
+    shells and the real post text sits elsewhere in the DOM. Posts also render
+    collapsed, so "See more" has to be clicked before the body carries the date
+    and price at all.
+
+    Post-derived candidates carry no image — the flyer cannot be tied to its post
+    reliably from flat body text, and a poster on the wrong show is worse than a
+    placeholder. refresh_events.py falls back to the band-name placeholder.
+    """
     log("scanning FB top posts")
     page.goto(PAGE, wait_until="domcontentloaded", timeout=60000)
-    page.wait_for_timeout(7000)
-    # expand truncated post bodies
+    page.wait_for_timeout(6000)
+
+    for _ in range(4):
+        try:
+            page.mouse.wheel(0, 1000)
+        except Exception:
+            break
+        page.wait_for_timeout(2000)
+        # Real clicks via locators: a synthetic el.click() does not expand these,
+        # and without expansion the post body has no date or price to read.
+        try:
+            more = page.get_by_text("See more", exact=True)
+            for i in range(min(more.count(), 6)):
+                try:
+                    more.nth(i).click(timeout=3000)
+                    page.wait_for_timeout(700)
+                except Exception:
+                    pass
+        except Exception:
+            pass
+        page.wait_for_timeout(1000)
+
     try:
-        page.evaluate(
-            "() => { document.querySelectorAll('div[role=\"button\"],span').forEach(b => {"
-            " if (/^see more$/i.test((b.innerText||'').trim())) b.click(); }); }"
-        )
-        page.wait_for_timeout(2500)
-    except Exception:
-        pass
-    try:
-        raw = page.evaluate(POSTS_JS)
+        body = clean(page.evaluate("() => document.body.innerText || ''"))
     except Exception as exc:
         log(f"! posts scrape failed: {str(exc)[:140]}")
         return []
+
     today = dt.date.today()
     out = []
-    for post in raw or []:
-        text = clean(post.get("text") or "")
-        if len(text) < 40:
-            continue
-        venue, address = find_venue(text)
-        date = parse_date(text, today)
-        if not venue or not date:
-            continue
-        headliner, support = lineup_from_links(post.get("links") or [], venue)
+    seen = set()
+    for match in re.finditer("|".join(re.escape(v) for v in
+                                      ("State Street Pub", "Black Circle", "Holy Ground")), body):
+        window = body[max(0, match.start() - 250): match.start() + 450]
+        venue, address = find_venue(window)
+        date = parse_date(window, today)
+        price = parse_price(window)
+        if not venue or not date or not price:
+            continue          # not an announcement, just a mention
+        headliner, support = parse_lineup(window)
         if not headliner:
-            headliner, support = parse_lineup(text)
-        if not headliner:
             continue
+        key = (headliner.upper(), date)
+        if key in seen:
+            continue
+        seen.add(key)
         out.append({
             "source": "fb-post",
             "fb_id": None,
@@ -401,12 +458,12 @@ def scan_posts(page):
             "date": date,
             "venue": venue,
             "address": address,
-            "doors": parse_time(text),
+            "doors": parse_time(window),
             "show": "",
-            "price": parse_price(text),
-            "age": parse_age(text, venue),
-            "image": full_size(post.get("img")),
-            "text": text[:400],
+            "price": price,
+            "age": parse_age(window, venue),
+            "image": None,
+            "text": window[:300],
         })
     log(f"found {len(out)} parseable show posts")
     return out
