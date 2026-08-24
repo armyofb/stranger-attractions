@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-08-10T13:40:33-04:00";
-const LAST_CHECKED = "2026-08-23T18:01:23-04:00";
+const LAST_UPDATED = "2026-08-24T10:01:22-04:00";
+const LAST_CHECKED = "2026-08-24T10:01:22-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -14,21 +14,6 @@ const LAST_CHECKED = "2026-08-23T18:01:23-04:00";
 // ============================================================
 
 const EVENTS = [
-  {
-    headliner: "PARALYSIS",
-    support: ["Chemical Dependency", "Graveripper", "Idol Throne"],
-    date: "2026-07-24",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "7:00 PM",
-    show: "8:00 PM",
-    price: "$20",
-    age: "All Ages",
-    tickets: "https://www.skeletix.com/4613-stranger-attractions-presents-paralysis/",
-    facebook: "https://www.facebook.com/events/2093279531253535/",
-    poster: "assets/posters/paralysis.jpg",
-    tag: "Thrash (NJ)"
-  },
   {
     headliner: "CYBER CRISIS",
     support: ["Dildox", "Healng", "Absolute Form", "Atropa Doll"],
