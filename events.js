@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-08-24T10:01:22-04:00";
-const LAST_CHECKED = "2026-08-25T10:01:16-04:00";
+const LAST_UPDATED = "2026-08-25T18:01:15-04:00";
+const LAST_CHECKED = "2026-08-25T18:01:15-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -268,6 +268,21 @@ const EVENTS = [
     facebook: "",
     poster: "assets/posters/sadness.jpg",
     tag: "Atmospheric Black Metal"
+  },
+  {
+    headliner: "BONGZILLA",
+    support: ["Rwake", "Deadbird"],
+    date: "2026-10-09",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "7:00 PM",
+    show: "8:00 PM",
+    price: "$22.50",
+    age: "All Ages",
+    tickets: "https://www.skeletix.com/4773-stranger-attractions-presents-bongzilla/",
+    facebook: "",
+    poster: "assets/posters/bongzilla.jpg",
+    tag: ""
   },
   {
     headliner: "EYEHATEGOD",
