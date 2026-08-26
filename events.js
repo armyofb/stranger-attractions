@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-08-25T18:01:15-04:00";
-const LAST_CHECKED = "2026-08-25T18:01:15-04:00";
+const LAST_UPDATED = "2026-08-26T10:01:21-04:00";
+const LAST_CHECKED = "2026-08-26T10:01:21-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -14,21 +14,6 @@ const LAST_CHECKED = "2026-08-25T18:01:15-04:00";
 // ============================================================
 
 const EVENTS = [
-  {
-    headliner: "CYBER CRISIS",
-    support: ["Dildox", "Healng", "Absolute Form", "Atropa Doll"],
-    date: "2026-07-26",
-    venue: "State Street Pub",
-    address: "243 N State Ave, Indianapolis, IN 46201",
-    doors: "7:00 PM",
-    show: "8:00 PM",
-    price: "$12",
-    age: "21 & Over",
-    tickets: "https://skeletix.com/4637-stranger-attractions-presents-cyber-crisis/",
-    facebook: "",
-    poster: "assets/posters/cyber-crisis.jpg",
-    tag: ""
-  },
   {
     headliner: "TO VIOLENTLY VOMIT",
     support: ["Protrusion", "Scrotal Erosion", "Charybdis"],
