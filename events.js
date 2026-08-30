@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-08-26T10:01:21-04:00";
-const LAST_CHECKED = "2026-08-29T18:01:06-04:00";
+const LAST_UPDATED = "2026-08-30T10:01:06-04:00";
+const LAST_CHECKED = "2026-08-30T10:01:06-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -14,21 +14,6 @@ const LAST_CHECKED = "2026-08-29T18:01:06-04:00";
 // ============================================================
 
 const EVENTS = [
-  {
-    headliner: "TO VIOLENTLY VOMIT",
-    support: ["Protrusion", "Scrotal Erosion", "Charybdis"],
-    date: "2026-07-30",
-    venue: "State Street Pub",
-    address: "243 N State Ave, Indianapolis, IN 46201",
-    doors: "7:00 PM",
-    show: "8:00 PM",
-    price: "$16",
-    age: "21 & Over",
-    tickets: "https://www.skeletix.com/4653-stranger-attractions-presents-to-violently/",
-    facebook: "https://www.facebook.com/events/2286035835263934/",
-    poster: "assets/posters/to-violently-vomit.jpg",
-    tag: "Disgorge US live show"
-  },
   {
     headliner: "SIX FEET UNDER",
     support: ["Fuming Mouth", "Flesher", "1 Body 6 Graves"],
