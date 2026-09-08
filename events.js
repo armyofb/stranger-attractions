@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-08-30T10:01:06-04:00";
-const LAST_CHECKED = "2026-09-08T10:01:12-04:00";
+const LAST_UPDATED = "2026-09-08T18:01:06-04:00";
+const LAST_CHECKED = "2026-09-08T18:01:06-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -267,6 +267,36 @@ const EVENTS = [
     tickets: "https://www.skeletix.com/4772-stranger-attractions-presents-eyehategod/",
     facebook: "",
     poster: "assets/posters/eyehategod.jpg",
+    tag: ""
+  },
+  {
+    headliner: "ALL HALLOWS EVE: GOTH COSTUME AND DANCE PARTY",
+    support: ["Sacred Skin", "Aux Animaux"],
+    date: "2026-10-30",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "8:00 PM",
+    show: "8:00 PM",
+    price: "$20",
+    age: "All Ages",
+    tickets: "https://www.skeletix.com/4837-all-hallows-eve-goth-costume-and-dance-par/",
+    facebook: "",
+    poster: "assets/posters/all-hallows-eve-goth-costume-and-dance-party.jpg",
+    tag: ""
+  },
+  {
+    headliner: "DANCE PARTY AT BLACK CIRCLE",
+    support: [],
+    date: "2026-10-30",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "",
+    show: "",
+    price: "$100",
+    age: "All Ages",
+    tickets: "",
+    facebook: "",
+    poster: "",
     tag: ""
   },
   {
