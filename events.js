@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-09-08T18:01:06-04:00";
-const LAST_CHECKED = "2026-09-09T10:01:16-04:00";
+const LAST_UPDATED = "2026-09-09T18:01:19-04:00";
+const LAST_CHECKED = "2026-09-09T18:01:19-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -267,6 +267,21 @@ const EVENTS = [
     tickets: "https://www.skeletix.com/4772-stranger-attractions-presents-eyehategod/",
     facebook: "",
     poster: "assets/posters/eyehategod.jpg",
+    tag: ""
+  },
+  {
+    headliner: "SCALP",
+    support: [],
+    date: "2026-10-11",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "6:00 PM",
+    show: "6:30 PM",
+    price: "$16",
+    age: "All Ages",
+    tickets: "https://www.skeletix.com/4838-stranger-attractions-317-shows-presents-s/",
+    facebook: "",
+    poster: "assets/posters/scalp.jpg",
     tag: ""
   },
   {
