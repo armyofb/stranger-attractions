@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-09-09T18:01:19-04:00";
-const LAST_CHECKED = "2026-09-13T18:01:17-04:00";
+const LAST_UPDATED = "2026-09-14T10:01:10-04:00";
+const LAST_CHECKED = "2026-09-14T10:01:10-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -14,21 +14,6 @@ const LAST_CHECKED = "2026-09-13T18:01:17-04:00";
 // ============================================================
 
 const EVENTS = [
-  {
-    headliner: "SIX FEET UNDER",
-    support: ["Fuming Mouth", "Flesher", "1 Body 6 Graves"],
-    date: "2026-08-14",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "6:30 PM",
-    show: "7:00 PM",
-    price: "$25",
-    age: "All Ages",
-    tickets: "https://www.skeletix.com/4544-stranger-attractions-presents-six-feet-unde/",
-    facebook: "https://www.facebook.com/events/2339915919747566/",
-    poster: "assets/posters/six-feet-under.jpg",
-    tag: "Legendary Death Metal"
-  },
   {
     headliner: "REZN",
     support: ["Lume", "Isolation Drills"],
