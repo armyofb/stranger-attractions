@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-09-14T10:01:10-04:00";
-const LAST_CHECKED = "2026-09-17T18:01:11-04:00";
+const LAST_UPDATED = "2026-09-18T10:01:12-04:00";
+const LAST_CHECKED = "2026-09-18T10:01:12-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -297,6 +297,21 @@ const EVENTS = [
     tickets: "",
     facebook: "",
     poster: "",
+    tag: ""
+  },
+  {
+    headliner: "MOTHER OF GRAVES RECORD RELEASE SHOW",
+    support: ["Veilcaste", "Avernus", "The Secrecy"],
+    date: "2026-11-21",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "7:00 PM",
+    show: "8:00 PM",
+    price: "$20",
+    age: "All Ages",
+    tickets: "https://www.skeletix.com/4850-stranger-attractions-presents-mother-of-gra/",
+    facebook: "",
+    poster: "assets/posters/mother-of-graves-record-release-show.jpg",
     tag: ""
   },
   {
