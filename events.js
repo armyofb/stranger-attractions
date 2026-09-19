@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-09-18T10:01:12-04:00";
-const LAST_CHECKED = "2026-09-18T18:01:19-04:00";
+const LAST_UPDATED = "2026-09-19T10:01:08-04:00";
+const LAST_CHECKED = "2026-09-19T10:01:08-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -14,21 +14,6 @@ const LAST_CHECKED = "2026-09-18T18:01:19-04:00";
 // ============================================================
 
 const EVENTS = [
-  {
-    headliner: "REZN",
-    support: ["Lume", "Isolation Drills"],
-    date: "2026-08-19",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "7:00 PM",
-    show: "8:00 PM",
-    price: "$20",
-    age: "All Ages",
-    tickets: "https://www.skeletix.com/4514-stranger-attractions-presents-rezn-blac/",
-    facebook: "https://www.facebook.com/events/1459975292045744/",
-    poster: "assets/posters/rezn.jpg",
-    tag: "Doom (Chicago, IL)"
-  },
   {
     headliner: "HELL IS REAL FEST",
     support: ["Profanatica", "Morbosidad", "Black Altar", "Cloak", "Valdrin", "Poltergeist", "Angel Massacre", "Arsine Ingest"],
