@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-09-19T10:01:08-04:00";
-const LAST_CHECKED = "2026-09-21T18:01:09-04:00";
+const LAST_UPDATED = "2026-09-22T10:01:09-04:00";
+const LAST_CHECKED = "2026-09-22T10:01:09-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -14,21 +14,6 @@ const LAST_CHECKED = "2026-09-21T18:01:09-04:00";
 // ============================================================
 
 const EVENTS = [
-  {
-    headliner: "HELL IS REAL FEST",
-    support: ["Profanatica", "Morbosidad", "Black Altar", "Cloak", "Valdrin", "Poltergeist", "Angel Massacre", "Arsine Ingest"],
-    date: "2026-08-22",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "4:00 PM",
-    show: "5:00 PM",
-    price: "$30",
-    age: "All Ages",
-    tickets: "https://skeletix.com/4564-stranger-attractions-presents-hell-is-real/",
-    facebook: "",
-    poster: "assets/posters/hell-is-real-fest.jpg",
-    tag: "Black & Death Metal Fest"
-  },
   {
     headliner: "HIPPIE DEATH CULT",
     support: ["The Well", "Moon Destroys", "Ancient Days"],
