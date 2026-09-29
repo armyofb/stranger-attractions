@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-09-22T10:01:09-04:00";
-const LAST_CHECKED = "2026-09-29T10:01:18-04:00";
+const LAST_UPDATED = "2026-09-29T18:00:59-04:00";
+const LAST_CHECKED = "2026-09-29T18:00:59-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -298,5 +298,35 @@ const EVENTS = [
     facebook: "https://www.facebook.com/events/1345150461121456/",
     poster: "assets/posters/psycroptic.jpg",
     tag: "Tech Death (Australia)"
+  },
+  {
+    headliner: "RICKSHAW BILLIES BURGER PATROL AND MORE",
+    support: [],
+    date: "2026-12-09",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "7:00 PM",
+    show: "8:00 PM",
+    price: "$18",
+    age: "All Ages",
+    tickets: "https://www.skeletix.com/4864-stranger-attractions-presents-rickshaw-bill/",
+    facebook: "",
+    poster: "assets/posters/rickshaw-billies-burger-patrol-and-more.jpg",
+    tag: ""
+  },
+  {
+    headliner: "PORCELAIN",
+    support: [],
+    date: "2026-12-13",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "6:00 PM",
+    show: "7:00 PM",
+    price: "$16",
+    age: "All Ages",
+    tickets: "https://www.skeletix.com/4862-stranger-attractions-presents-porcelain/",
+    facebook: "",
+    poster: "assets/posters/porcelain.jpg",
+    tag: ""
   },
 ];
