@@ -255,21 +255,6 @@ const EVENTS = [
     tag: ""
   },
   {
-    headliner: "DANCE PARTY AT BLACK CIRCLE",
-    support: [],
-    date: "2026-10-30",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "",
-    show: "",
-    price: "$100",
-    age: "All Ages",
-    tickets: "",
-    facebook: "",
-    poster: "",
-    tag: ""
-  },
-  {
     headliner: "MOTHER OF GRAVES RECORD RELEASE SHOW",
     support: ["Veilcaste", "Avernus", "The Secrecy"],
     date: "2026-11-21",

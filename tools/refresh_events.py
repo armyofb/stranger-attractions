@@ -357,13 +357,25 @@ def merge_facebook(entries, skeletix_added, today, args):
         return [], []
 
     known = set()
+    slots = set()
     for entry in entries + [render_entry(e) for e in skeletix_added]:
         known.add((norm_name(entry_field(entry, "headliner")), entry_field(entry, "date")))
+        slots.add((entry_field(entry, "date"), norm_name(entry_field(entry, "venue"))))
 
     auto, review = [], []
     for cand in payload.get("candidates") or []:
         key = (norm_name(cand.get("headliner")), cand.get("date") or "")
         if key in known:
+            continue
+        # One venue cannot host two different shows on the same night. Facebook
+        # prose describing a show we already have from Skeletix parses to a
+        # different-looking headliner, so a headliner match alone let a phantom
+        # duplicate through (a $100 costume prize became a $100 "DANCE PARTY AT
+        # BLACK CIRCLE" alongside the real All Hallows Eve listing).
+        slot = (cand.get("date") or "", norm_name(cand.get("venue")))
+        if slot in slots:
+            log(f"  skipped (facebook): {cand.get('headliner')} — {cand.get('date')} @ "
+                f"{cand.get('venue')} already has a show that night")
             continue
         try:
             if dt.date.fromisoformat(cand["date"]) < today:
@@ -403,6 +415,7 @@ def merge_facebook(entries, skeletix_added, today, args):
             f"{ev['venue']} ({ev['age']}, {ev['price']})")
         auto.append(ev)
         known.add(key)
+        slots.add(slot)
 
     for cand, missing in review:
         log(f"  NEEDS REVIEW (facebook): {cand.get('headliner')} {cand.get('date')} "

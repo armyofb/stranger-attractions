@@ -279,6 +279,28 @@ def lineup_from_links(links, venue):
     return bands[0].upper(), bands[1:]
 
 
+def plausible_headliner(name):
+    """Reject prose fragments that are not band names.
+
+    Free-text posts yield things like "DANCE PARTY AT BLACK CIRCLE" — a phrase
+    lifted out of a sentence, carrying the venue with it. One of those was
+    published as a real show. A headliner that names a venue, or that reads
+    like ticket-announcement copy, is prose rather than a band.
+
+    Plain prepositions are NOT disqualifying — real bills here include
+    FIRES IN THE DISTANCE and LORDS OF THE TRIDENT.
+    """
+    low = (name or "").lower().strip()
+    if not low or len(low) > 45:
+        return False
+    for venue_key in VENUES:
+        if venue_key in low:
+            return False
+    if re.search(r"\b(tickets?|presale|pre-sale|on sale|doors|rsvp)\b", low):
+        return False
+    return True
+
+
 def full_size(url):
     """FB serves feed images downscaled via a ctp= param; cstp= carries the
     source dimensions. Swapping one for the other yields the original flyer."""
@@ -444,6 +466,10 @@ def scan_posts(page):
             continue          # not an announcement, just a mention
         headliner, support = parse_lineup(window)
         if not headliner:
+            continue
+        if not plausible_headliner(headliner):
+            # A false reject is an invisible missed show, so log it.
+            log(f'  skipped (not a band name): {headliner}')
             continue
         key = (headliner.upper(), date)
         if key in seen:
