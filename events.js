@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-09-30T12:06:30-04:00";
-const LAST_CHECKED = "2026-10-01T10:01:08-04:00";
+const LAST_UPDATED = "2026-10-01T18:01:04-04:00";
+const LAST_CHECKED = "2026-10-01T18:01:04-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -327,6 +327,21 @@ const EVENTS = [
     tickets: "https://www.skeletix.com/4862-stranger-attractions-presents-porcelain/",
     facebook: "",
     poster: "assets/posters/porcelain.jpg",
+    tag: ""
+  },
+  {
+    headliner: "DECEASED",
+    support: ["Vigil", "Vile Iniquity", "Casket Sealed Shut"],
+    date: "2026-12-16",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "7:00 PM",
+    show: "7:30 PM",
+    price: "$20",
+    age: "All Ages",
+    tickets: "https://www.skeletix.com/4866-stranger-attractions-presents-deceased/",
+    facebook: "",
+    poster: "assets/posters/deceased.jpg",
     tag: ""
   },
 ];
