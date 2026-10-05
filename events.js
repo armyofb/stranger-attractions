@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-10-04T18:01:26-04:00";
-const LAST_CHECKED = "2026-10-04T18:01:26-04:00";
+const LAST_UPDATED = "2026-10-05T10:01:36-04:00";
+const LAST_CHECKED = "2026-10-05T10:01:36-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -14,21 +14,6 @@ const LAST_CHECKED = "2026-10-04T18:01:26-04:00";
 // ============================================================
 
 const EVENTS = [
-  {
-    headliner: "VEILCASTE",
-    support: ["Crop", "Lordship", "Thorr-Axe"],
-    date: "2026-09-04",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "7:00 PM",
-    show: "8:00 PM",
-    price: "$20",
-    age: "All Ages",
-    tickets: "https://skeletix.com/4706-veilcaste-record-release-show-black-cir/",
-    facebook: "https://www.facebook.com/events/971761605268641/",
-    poster: "assets/posters/veilcaste.jpg",
-    tag: "“Hellward” Release Show"
-  },
   {
     headliner: "FIRES IN THE DISTANCE",
     support: ["Hinayana"],
@@ -153,6 +138,21 @@ const EVENTS = [
     headliner: "SOME BRUTALITY",
     support: [],
     date: "2026-10-04",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "4:00 PM",
+    show: "",
+    price: "$15",
+    age: "All Ages",
+    tickets: "",
+    facebook: "",
+    poster: "",
+    tag: ""
+  },
+  {
+    headliner: "SOME BRUTALITY",
+    support: [],
+    date: "2026-10-05",
     venue: "Black Circle",
     address: "2201 E 46th St, Indianapolis, IN 46205",
     doors: "4:00 PM",
