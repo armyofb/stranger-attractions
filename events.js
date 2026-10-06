@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-10-05T10:01:36-04:00";
-const LAST_CHECKED = "2026-10-05T18:01:12-04:00";
+const LAST_UPDATED = "2026-10-06T10:02:29-04:00";
+const LAST_CHECKED = "2026-10-06T10:02:29-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -153,6 +153,21 @@ const EVENTS = [
     headliner: "SOME BRUTALITY",
     support: [],
     date: "2026-10-05",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "4:00 PM",
+    show: "",
+    price: "$15",
+    age: "All Ages",
+    tickets: "",
+    facebook: "",
+    poster: "",
+    tag: ""
+  },
+  {
+    headliner: "SOME BRUTALITY",
+    support: [],
+    date: "2026-10-06",
     venue: "Black Circle",
     address: "2201 E 46th St, Indianapolis, IN 46205",
     doors: "4:00 PM",
