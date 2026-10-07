@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-10-06T10:02:29-04:00";
-const LAST_CHECKED = "2026-10-06T18:01:19-04:00";
+const LAST_UPDATED = "2026-10-07T10:01:40-04:00";
+const LAST_CHECKED = "2026-10-07T10:01:40-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -14,21 +14,6 @@ const LAST_CHECKED = "2026-10-06T18:01:19-04:00";
 // ============================================================
 
 const EVENTS = [
-  {
-    headliner: "FIRES IN THE DISTANCE",
-    support: ["Hinayana"],
-    date: "2026-09-06",
-    venue: "State Street Pub",
-    address: "243 N State Ave, Indianapolis, IN 46201",
-    doors: "7:00 PM",
-    show: "7:30 PM",
-    price: "$15",
-    age: "21 & Over",
-    tickets: "https://skeletix.com/4678-stranger-attractions-presents-fires-in-the/",
-    facebook: "",
-    poster: "assets/posters/fires-in-the-distance.jpg",
-    tag: "Melodic Death Doom (CT)"
-  },
   {
     headliner: "NAK’AY",
     support: ["Impulse Noise", "Genestealer", "Thlurm"],
