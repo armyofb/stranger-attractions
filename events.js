@@ -75,51 +75,6 @@ const EVENTS = [
     tag: ""
   },
   {
-    headliner: "SOME BRUTALITY",
-    support: [],
-    date: "2026-10-04",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "4:00 PM",
-    show: "",
-    price: "$15",
-    age: "All Ages",
-    tickets: "",
-    facebook: "",
-    poster: "",
-    tag: ""
-  },
-  {
-    headliner: "SOME BRUTALITY",
-    support: [],
-    date: "2026-10-05",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "4:00 PM",
-    show: "",
-    price: "$15",
-    age: "All Ages",
-    tickets: "",
-    facebook: "",
-    poster: "",
-    tag: ""
-  },
-  {
-    headliner: "SOME BRUTALITY",
-    support: [],
-    date: "2026-10-06",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "4:00 PM",
-    show: "",
-    price: "$15",
-    age: "All Ages",
-    tickets: "",
-    facebook: "",
-    poster: "",
-    tag: ""
-  },
-  {
     headliner: "FRIZZI 2 FULCI",
     support: ["Ethan McCarthy"],
     date: "2026-10-07",
@@ -148,21 +103,6 @@ const EVENTS = [
     facebook: "",
     poster: "assets/posters/sadness.jpg",
     tag: "Atmospheric Black Metal"
-  },
-  {
-    headliner: "SOME BRUTALITY",
-    support: [],
-    date: "2026-10-08",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "4:00 PM",
-    show: "",
-    price: "$15",
-    age: "All Ages",
-    tickets: "",
-    facebook: "",
-    poster: "",
-    tag: ""
   },
   {
     headliner: "BONGZILLA",

@@ -279,6 +279,10 @@ def lineup_from_links(links, venue):
     return bands[0].upper(), bands[1:]
 
 
+RELATIVE_DAY = re.compile(
+    r"\b(today|tonight|tomorrow|(this|next)\s+(" + "|".join(WEEKDAYS) + r"))\b")
+
+
 def plausible_headliner(name):
     """Reject prose fragments that are not band names.
 
@@ -470,6 +474,14 @@ def scan_posts(page):
         if not plausible_headliner(headliner):
             # A false reject is an invisible missed show, so log it.
             log(f'  skipped (not a band name): {headliner}')
+            continue
+        # "Today"/"tonight" in a post means the day it was POSTED, but the
+        # only day we know is the day we scanned it. A post that sits near the
+        # top for a week re-dates itself every run: SOME BRUTALITY was
+        # published as a Black Circle show on Oct 4, 5, 6 and 8. FB's own
+        # event list is fine (it renders relative to now); posts are not.
+        if RELATIVE_DAY.search(window.lower()):
+            log(f'  skipped (relative date in a post, cannot pin the day): {headliner}')
             continue
         key = (headliner.upper(), date)
         if key in seen:
