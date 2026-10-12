@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-10-10T10:01:44-04:00";
-const LAST_CHECKED = "2026-10-10T18:01:52-04:00";
+const LAST_UPDATED = "2026-10-12T11:59:23-04:00";
+const LAST_CHECKED = "2026-10-12T11:59:23-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -14,36 +14,6 @@ const LAST_CHECKED = "2026-10-10T18:01:52-04:00";
 // ============================================================
 
 const EVENTS = [
-  {
-    headliner: "MONOLORD",
-    support: ["Khemmis", "Mother of Graves"],
-    date: "2026-09-10",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "7:00 PM",
-    show: "8:00 PM",
-    price: "$28",
-    age: "All Ages",
-    tickets: "https://www.skeletix.com/4414-stranger-attractions-presents-monolord/",
-    facebook: "https://www.facebook.com/events/786733734169167/",
-    poster: "assets/posters/monolord.jpg",
-    tag: "Doom (Sweden)"
-  },
-  {
-    headliner: "CASTLE",
-    support: ["Bastard Cross", "Blasted Heath"],
-    date: "2026-09-11",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "7:00 PM",
-    show: "8:00 PM",
-    price: "$16",
-    age: "All Ages",
-    tickets: "https://www.skeletix.com/4673-stranger-attractions-presents-castle-bl/",
-    facebook: "https://www.facebook.com/events/1585299696551628/",
-    poster: "assets/posters/castle.jpg",
-    tag: "Heavy Metal (Canada)"
-  },
   {
     headliner: "GRAVERIPPER",
     support: ["Raider", "Huntsmen", "Nequient"],
