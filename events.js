@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-10-12T11:59:23-04:00";
-const LAST_CHECKED = "2026-10-13T18:01:12-04:00";
+const LAST_UPDATED = "2026-10-14T10:01:20-04:00";
+const LAST_CHECKED = "2026-10-14T10:01:20-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -14,21 +14,6 @@ const LAST_CHECKED = "2026-10-13T18:01:12-04:00";
 // ============================================================
 
 const EVENTS = [
-  {
-    headliner: "GRAVERIPPER",
-    support: ["Raider", "Huntsmen", "Nequient"],
-    date: "2026-09-13",
-    venue: "State Street Pub",
-    address: "243 N State Ave, Indianapolis, IN 46201",
-    doors: "7:00 PM",
-    show: "",
-    price: "$15",
-    age: "21 & Over",
-    tickets: "",
-    facebook: "",
-    poster: "assets/posters/graveripper.jpg",
-    tag: "No presale — cash at the door"
-  },
   {
     headliner: "VOID",
     support: ["Phantom", "Sacred Leather"],
