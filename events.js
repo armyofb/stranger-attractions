@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-10-17T10:01:25-04:00";
-const LAST_CHECKED = "2026-10-20T18:01:13-04:00";
+const LAST_UPDATED = "2026-10-21T10:01:44-04:00";
+const LAST_CHECKED = "2026-10-21T10:01:44-04:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -222,6 +222,21 @@ const EVENTS = [
     tickets: "https://www.skeletix.com/4866-stranger-attractions-presents-deceased/",
     facebook: "",
     poster: "assets/posters/deceased.jpg",
+    tag: ""
+  },
+  {
+    headliner: "AN INTIMATE EVENING",
+    support: ["Bo Daddy Harris"],
+    date: "2027-01-16",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "8:00 PM",
+    show: "8:00 PM",
+    price: "$16",
+    age: "All Ages",
+    tickets: "https://www.skeletix.com/4885-stranger-attractions-presents-an-intimate-e/",
+    facebook: "",
+    poster: "assets/posters/an-intimate-evening.jpg",
     tag: ""
   },
 ];
