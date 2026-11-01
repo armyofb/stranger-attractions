@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-10-21T10:01:44-04:00";
-const LAST_CHECKED = "2026-10-31T18:01:53-04:00";
+const LAST_UPDATED = "2026-11-01T09:02:13-05:00";
+const LAST_CHECKED = "2026-11-01T09:02:13-05:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -14,21 +14,6 @@ const LAST_CHECKED = "2026-10-31T18:01:53-04:00";
 // ============================================================
 
 const EVENTS = [
-  {
-    headliner: "LORDS OF THE TRIDENT",
-    support: ["Faerie Ring", "Throne of Iron"],
-    date: "2026-10-01",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "7:00 PM",
-    show: "8:00 PM",
-    price: "$16",
-    age: "All Ages",
-    tickets: "https://www.skeletix.com/4737-stranger-attractions-presents-lords-of-the/",
-    facebook: "",
-    poster: "assets/posters/lords-of-the-trident-w-faerie-ring-throne-of-iron.jpg",
-    tag: ""
-  },
   {
     headliner: "WINDHAND",
     support: ["Sonja"],
