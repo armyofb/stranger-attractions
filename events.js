@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-11-02T09:01:43-05:00";
-const LAST_CHECKED = "2026-11-06T17:01:28-05:00";
+const LAST_UPDATED = "2026-11-07T09:01:34-05:00";
+const LAST_CHECKED = "2026-11-07T09:01:34-05:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -14,36 +14,6 @@ const LAST_CHECKED = "2026-11-06T17:01:28-05:00";
 // ============================================================
 
 const EVENTS = [
-  {
-    headliner: "FRIZZI 2 FULCI",
-    support: ["Ethan McCarthy"],
-    date: "2026-10-07",
-    venue: "Holy Ground Studio",
-    address: "3317 E 10th St, Indianapolis, IN 46201",
-    doors: "7:00 PM",
-    show: "8:00 PM",
-    price: "$30",
-    age: "All Ages",
-    tickets: "https://skeletix.com/4670-stranger-attractions-presents-frizzi-2-fulc/",
-    facebook: "",
-    poster: "assets/posters/frizzi-2-fulci.jpg",
-    tag: "Fabio Frizzi Performs Fulci Scores"
-  },
-  {
-    headliner: "SADNESS",
-    support: ["Barbelith", "Monterey"],
-    date: "2026-10-07",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "7:00 PM",
-    show: "7:30 PM",
-    price: "$16",
-    age: "All Ages",
-    tickets: "https://www.skeletix.com/4697-stranger-attractions-presents-black-circl/",
-    facebook: "",
-    poster: "assets/posters/sadness.jpg",
-    tag: "Atmospheric Black Metal"
-  },
   {
     headliner: "BONGZILLA",
     support: ["Rwake", "Deadbird"],
