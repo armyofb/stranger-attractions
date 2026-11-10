@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-11-10T09:03:00-05:00";
-const LAST_CHECKED = "2026-11-10T09:03:00-05:00";
+const LAST_UPDATED = "2026-11-10T17:02:23-05:00";
+const LAST_CHECKED = "2026-11-10T17:02:23-05:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -147,6 +147,21 @@ const EVENTS = [
     tickets: "https://www.skeletix.com/4885-stranger-attractions-presents-an-intimate-e/",
     facebook: "",
     poster: "assets/posters/an-intimate-evening.jpg",
+    tag: ""
+  },
+  {
+    headliner: "EARTH TONGUE & MORE",
+    support: [],
+    date: "2027-06-28",
+    venue: "Black Circle",
+    address: "2201 E 46th St, Indianapolis, IN 46205",
+    doors: "7:00 PM",
+    show: "8:00 PM",
+    price: "$20",
+    age: "All Ages",
+    tickets: "https://www.skeletix.com/4928-stranger-attractions-presents-earth-tongue/",
+    facebook: "",
+    poster: "assets/posters/earth-tongue-more.jpg",
     tag: ""
   },
 ];
