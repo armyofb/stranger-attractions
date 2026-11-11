@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-11-10T17:02:23-05:00";
-const LAST_CHECKED = "2026-11-10T17:02:23-05:00";
+const LAST_UPDATED = "2026-11-11T09:02:24-05:00";
+const LAST_CHECKED = "2026-11-11T09:02:24-05:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -14,21 +14,6 @@ const LAST_CHECKED = "2026-11-10T17:02:23-05:00";
 // ============================================================
 
 const EVENTS = [
-  {
-    headliner: "SCALP",
-    support: [],
-    date: "2026-10-11",
-    venue: "Black Circle",
-    address: "2201 E 46th St, Indianapolis, IN 46205",
-    doors: "6:00 PM",
-    show: "6:30 PM",
-    price: "$16",
-    age: "All Ages",
-    tickets: "https://www.skeletix.com/4838-stranger-attractions-317-shows-presents-s/",
-    facebook: "",
-    poster: "assets/posters/scalp.jpg",
-    tag: ""
-  },
   {
     headliner: "ALL HALLOWS EVE: GOTH COSTUME AND DANCE PARTY",
     support: ["Sacred Skin", "Aux Animaux"],
