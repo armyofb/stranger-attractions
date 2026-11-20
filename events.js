@@ -4,8 +4,8 @@
 // the event data changes (ISO 8601 with timezone offset).
 // ============================================================
 
-const LAST_UPDATED = "2026-11-11T09:02:24-05:00";
-const LAST_CHECKED = "2026-11-20T09:01:07-05:00";
+const LAST_UPDATED = "2026-11-20T17:01:09-05:00";
+const LAST_CHECKED = "2026-11-20T17:01:09-05:00";
 
 // ============================================================
 // To add a show: copy a block below, update the fields, and
@@ -87,6 +87,21 @@ const EVENTS = [
     tickets: "https://www.skeletix.com/4864-stranger-attractions-presents-rickshaw-bill/",
     facebook: "",
     poster: "assets/posters/rickshaw-billies-burger-patrol-and-more.jpg",
+    tag: ""
+  },
+  {
+    headliner: "PLAGUEWIELDER",
+    support: ["Symphony of Heaven"],
+    date: "2026-12-12",
+    venue: "State Street Pub",
+    address: "243 N State Ave, Indianapolis, IN 46201",
+    doors: "7:00 PM",
+    show: "",
+    price: "$15",
+    age: "21 & Over",
+    tickets: "",
+    facebook: "",
+    poster: "",
     tag: ""
   },
   {
